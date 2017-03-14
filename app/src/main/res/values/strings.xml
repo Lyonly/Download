@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">多线程下载器</string>
+    <string name="bt_new">新建任务</string>
+    <string name="bt_pause">暂停</string>
+    <string name="bt_start">开始</string>
+    <string name="bt_del">删除</string>
+    <string name="et_pathtip">请输入下载链接</string>
+    <string name="tv_pathtip">请输入下载链接:</string>
+    <string name="back">返回</string>
+</resources>
