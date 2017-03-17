@@ -8,21 +8,13 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="edu.hzuapps.androidlabs.homeworks.net1414080903209.Net1414080903209Activity">
 
-<EditText
-    android:id="@+id/et_path"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginRight="10dp"
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="@string/et_pathtip"
-    />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp">
+    android:layout_margin="10dp">
         <Button
             android:text="@string/bt_new"
+            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -32,6 +24,7 @@
 
     <Button
         android:id="@+id/bt_pause"
+        android:layout_margin="5dp"
         android:text="@string/bt_pause"
         android:layout_weight="1"
         android:layout_width="wrap_content"
@@ -41,6 +34,7 @@
 
     <Button
             android:text="@string/bt_del"
+        android:layout_margin="5dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
@@ -48,6 +42,14 @@
             android:id="@+id/bt_del"
             android:layout_alignParentTop="true" />
 </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+
+
+    </LinearLayout>
 
 
 </LinearLayout>
