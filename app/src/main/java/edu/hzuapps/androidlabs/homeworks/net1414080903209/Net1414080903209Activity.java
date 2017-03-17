@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 public  class Net1414080903209Activity extends AppCompatActivity implements View.OnClickListener {
 
+    private String path;
     private Button btn_start;
     private EditText et_path;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,36 +25,35 @@ public  class Net1414080903209Activity extends AppCompatActivity implements View
         btn_start.setOnClickListener(this);
     }
 
-
     @Override
     public void onClick(View v) {
+
+
         switch (v.getId()) {
             case R.id.btn_start:{
-                String str=et_path.getText().toString().trim();
-                if(str.equals("")) {
+                path=et_path.getText().toString().trim();
+                if(path.equals("")) {
                     Toast.makeText(Net1414080903209Activity.this, "网址不能为空", Toast.LENGTH_LONG).show();
 
-                    //返回主界面
+
+                }
+                else {
+                    Toast.makeText(Net1414080903209Activity.this, "你输入的网址是" + path, Toast.LENGTH_LONG).show();
+                    Log.i("System.out", path);
+
+                    //跳转至主界面  传给路径
                     Intent intent = new Intent();
                     intent.setClass(Net1414080903209Activity.this,MainActivity.class);
+                    intent.putExtra("addProgressbar",true);
+                    intent.putExtra("path",path);
                     startActivity(intent);
                     Net1414080903209Activity.this.finish();
                 }
-                else{
-                    Toast.makeText(Net1414080903209Activity.this, "你输入的网址是"+str, Toast.LENGTH_LONG).show();
-                    Log.i("System.out",str);
-                    Download download = new Download(str);
-                    download.start();
-
-
-                }
-
-                Toast.makeText(Net1414080903209Activity.this,"下载完毕",Toast.LENGTH_LONG).show();
             }break;
-
-
-
-
         }
+
+
     }
+
+
 }

@@ -14,11 +14,13 @@ public class DownloadThread extends Thread{
     private int End;
     private int Threadid;
     private  String Path;
-    public DownloadThread(int start,int end,int threadid,String path){
+    private String fileName;
+    public DownloadThread(int start,int end,int threadid,String path,String FileName){
         this.Start=start;
         this.End=end;
         this.Threadid=threadid;
         this.Path=path;
+        this.fileName= FileName;
     }
 
 
@@ -42,7 +44,7 @@ public class DownloadThread extends Thread{
             con.setRequestProperty("Range","bytes="+Start+"-"+End);//设置线程下载的位置
 
             if(con.getResponseCode()==206) {
-                RandomAccessFile raf = new RandomAccessFile("/mnt/sdcard/QQ.apk", "rw");
+                RandomAccessFile raf = new RandomAccessFile("/mnt/sdcard/"+fileName, "rw");
                 raf.seek(Start);//创建一个本地文件，seek()设置偏移量 该位置发生下一个写操作
 
                 InputStream inputstream = con.getInputStream();

@@ -9,12 +9,15 @@ import java.net.*;
 
 public class Download extends Thread{
     private String path="";//下载路径
-
-    public Download(String PATH){
+    private String fileName;
+    private int fileSize;
+    public Download(String PATH,String FileName){
         this.path=PATH;
+        this.fileName=FileName;
     }
 
     private  final  int threadCount = 3;
+
 
     public  void run(){
         try{
@@ -25,10 +28,10 @@ public class Download extends Thread{
             con.setConnectTimeout(5000);//设置连接超时时间
             if(con.getResponseCode()==200) {
                 int contentlength = con.getContentLength();
-
+                fileSize = contentlength;
 
                 //创建一个和下载文件一样大的文件 RandomAccessFile 随机访问文件
-                RandomAccessFile accessfile = new RandomAccessFile("/storage/sdcard/QQ.apk", "rw");
+                RandomAccessFile accessfile = new RandomAccessFile("/storage/sdcard/"+fileName, "rw");
                 accessfile.setLength(contentlength);
 
                 //每个线程下载的开始和结束位置
@@ -41,7 +44,7 @@ public class Download extends Thread{
                     }
 
                     //启动线程的位置
-                    DownloadThread thread = new DownloadThread(start, end, i, path);
+                    DownloadThread thread = new DownloadThread(start, end, i, path,fileName);
                     Log.i("System.out", "run:start:"+start+"end:"+end+"threadid:"+i);
                     thread.start();
                 }
@@ -50,6 +53,10 @@ public class Download extends Thread{
         }catch(Exception e){
             Log.i("System.out", "err");
         }
+    }
+
+    public  int returnSize(){
+        return fileSize;
     }
 }
 
