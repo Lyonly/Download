@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean add;
     private String fileName;
     private String path;
+    private int lastPostion;
     @Override
 
 
@@ -44,7 +45,8 @@ public class MainActivity extends AppCompatActivity {
             tv_fileName.setText(fileName);
             tv_fileSize.setText(size);
             pb.setMax(size);
-
+            lastPostion=download.returnCurrentPostion();
+            if(lastPostion!=0)
             ll_pb.addView(view);
         }
 

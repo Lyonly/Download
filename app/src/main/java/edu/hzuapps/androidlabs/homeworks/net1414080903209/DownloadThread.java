@@ -27,7 +27,7 @@ public class DownloadThread extends Thread{
     public void run(){
         try{
             //读取断点
-            File file = new File("/storage/sdcard/"+Threadid+".txt");
+            File file = new File("/mnt/sdcard/"+Threadid+".txt");
             if (file.exists()&&file.length()>0) {
                 FileInputStream fis = new FileInputStream(file);
                 BufferedReader buf = new BufferedReader(new InputStreamReader(fis));

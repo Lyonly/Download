@@ -11,6 +11,9 @@ public class Download extends Thread{
     private String path="";//下载路径
     private String fileName;
     private int fileSize;
+
+
+    private int pbCurrentPostion=0;
     public Download(String PATH,String FileName){
         this.path=PATH;
         this.fileName=FileName;
@@ -18,7 +21,21 @@ public class Download extends Thread{
 
     private  final  int threadCount = 3;
 
-
+    public int returnCurrentPostion() {
+        int total;
+        for (int i = 0; i < threadCount; i++) {
+            File file = new File("/mnt/sdcard/" + i + ".txt");
+            if (file.exists() && file.length() > 0) {
+                FileInputStream fis = new FileInputStream(file);
+                BufferedReader buf = new BufferedReader(new InputStreamReader(fis));
+                String lastPosition = buf.readLine();
+                Start = Integer.parseInt(lastPosition);
+                pbCurrentPostion+=Start;
+                fis.close();
+            }
+        }
+        return pbCurrentPostion;
+    }
     public  void run(){
         try{
             URL url = new URL(path);
@@ -31,7 +48,7 @@ public class Download extends Thread{
                 fileSize = contentlength;
 
                 //创建一个和下载文件一样大的文件 RandomAccessFile 随机访问文件
-                RandomAccessFile accessfile = new RandomAccessFile("/storage/sdcard/"+fileName, "rw");
+                RandomAccessFile accessfile = new RandomAccessFile("/mnt/sdcard/"+fileName, "rw");
                 accessfile.setLength(contentlength);
 
                 //每个线程下载的开始和结束位置
